@@ -1,0 +1,65 @@
+<!doctype html>
+<html>  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>LIBRARY BOOKS</h1>
+    </header>
+
+    <section>
+        <div class="login-container">
+            <form onsubmit="login(event)">
+                <h2>LOGIN</h2>
+
+                <div class="input-group">
+                    <label for="Username">pin no:</label>
+                    <input type="text" id="Username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">password:</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <div class="input-group">
+                    <button type="submit" value="submit">submit</button>
+                </div>
+                <section style="margin-top:20px;">
+                <div class="sign">
+                    Don't have register..?
+                    <a href="index2.html">   sign up</a> 
+                </div>
+                </section>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+
+            // Corrected ID matching
+            let username = document.getElementById("Username").value;
+            let password = document.getElementById("password").value;
+
+            // Get stored account
+            let user = JSON.parse(localStorage.getItem("user"));
+
+            if (user && username === user.username && password === user.password) {
+                alert("Login successful!");
+                window.location.href = "advance.html";
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
+<footer>
+<p>&copy; 2025.All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diploma Study Materials</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 5px;
+        background-image: url(bg.jpg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    h1 {
+        text-align: center;
+        padding : 0px;;
+    }
+    .semester, .subjects {
+        background: white;
+        padding: 15px;
+        margin: 15px auto;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+    .subject-item {
+        padding: 10px;
+        margin-top: 8px;
+        background:#e8e8e8;
+        border-radius: 8px;
+        cursor: pointer;
+        
+    }
+    footer{
+        text-align: center;
+        background-color: #e8e8e8;
+        margin : 15px auto;
+        border-radius: 10px;;
+        max-width:6cm;
+        width :6cm;
+       
+        
+    }
+</style>
+</head>
+<body>
+
+<h1>Diploma Study Material (CME)</h1>
+
+
+
+<!-- Semester List -->
+<div class="semester" onclick="showSubjects('sem1')">1st Semester</div>
+<div class="semester" onclick="showSubjects('sem3')">3rd Semester</div>
+<div class="semester" onclick="showSubjects('sem4')">4th Semester</div>
+<div class="semester" onclick="showSubjects('sem5')">5th Semester</div>
+
+<!-- Subjects container -->
+<div id="subjects-container"></div>
+
+<script>
+// Example Subjects + PDF links
+const data = {
+    sem1: {
+        title: "1st Semester Subjects",
+        subjects: [
+            { name: "Mathematics - 1", pdf: "pdfs/math1.pdf" },
+            { name: "English", pdf: "pdfs/physics.pdf" },
+            { name: "Physics", pdf: "pdfs/physics.pdf" },
+            { name: "Chemistry", pdf: "pdfs/physics.pdf" },
+            { name: "Basics of Computer Engineering", pdf: "pdfs/physics.pdf" },
+            { name: "C-Programming", pdf: "pdfs/physics.pdf" },
+        ]
+    },
+    sem3: {
+        title: "3rd Semester Subjects",
+        subjects: [
+            { name: "Engineering Maths - 2", pdf: "pdfs/math3.pdf" },
+            { name: "Digital Electronics", pdf: "pdfs/digital.pdf" },
+             { name: "Operating Systems", pdf: "pdfs/digital.pdf" },
+              { name: "Data Structures", pdf: "pdfs/digital.pdf" },
+               { name: "DataBase Management System", pdf: "pdfs/digital.pdf" }
+        ]
+    },
+    sem4: {
+        title: "4th Semester Subjects",
+        subjects: [
+            { name: "Software Engineering", pdf: "pdfs/network.pdf" },
+            { name: "Web Technologies", pdf: "pdfs/network.pdf" },
+            { name: "Computer Organization & Microprocessors", pdf: "pdfs/microprocessor.pdf" },
+            { name: "OOPS through JAVA", pdf: "pdfs/network.pdf" },
+            { name: "Computer Networks & Cyber Security", pdf: "pdfs/network.pdf" }
+        ]
+    },
+    sem5: {
+        title: "5th Semester Subjects",
+        subjects: [
+             { name: "Industrial management", pdf: "pdfs/web.pdf" },
+              { name: "Big Data & Cloud computing", pdf: "pdfs/web.pdf" },
+            { name: "Internet of things", pdf: "pdfs/os.pdf" },
+             { name: "Python Programming", pdf: "pdfs/web.pdf" },
+            { name: "Android Programming", pdf: "pdfs/web.pdf" }
+        ]
+    }
+};
+
+// Show subjects for clicked semester
+function showSubjects(sem) {
+    const container = document.getElementById("subjects-container");
+    const semester = data[sem];
+
+    let html = `
+        <div class="subjects">
+            <h3>${semester.title}</h3>
+    `;
+
+    semester.subjects.forEach(sub => {
+        html += `
+            <div class="subject-item" onclick="openPDF('${sub.pdf}')">
+                ${sub.name}
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
+// Open PDF in new tab
+function openPDF(link) {
+    window.open(link, "_blank");
+}
+</script>
+
+<footer><h3> Thanks for visiting ❤️ </h3></footer>
+</body>
+</html>

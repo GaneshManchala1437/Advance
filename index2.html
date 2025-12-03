@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>LIBRARY BOOKS</h1>
+    </header>
+
+    <section>
+        <div class="login-container">
+            <h2>SIGN IN</h2>
+            <form onsubmit="sign_up(event)">
+                <div class="input-group">
+                    <label for="username">Pin no:</label>
+                    <input type="text" id="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" required>
+                </div>
+
+                <div class="input-group">
+                    <button type="submit" value="create"> create</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function sign_up(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let name = document.getElementById("name").value;
+            let password = document.getElementById("password").value;
+
+            // Save account in localStorage
+            localStorage.setItem("user", JSON.stringify({ username, password, name }));
+
+            alert("Account created successfully!");
+
+            // Redirect to login page
+            window.location.href = "index.html";
+        }
+    </script>
+<footer>
+<p>&copy; 2025.All rights reserved.</p>
+</footer>    
+</body>
+</html>
+
+

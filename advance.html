@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diploma Study Hub</title>
+
+<!-- Google Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #f0f2f5;
+    }
+
+    header {
+        background: linear-gradient(135deg, #4c6ef5, #6a82fb);
+        color: white;
+        padding: 25px;
+        text-align: center;
+        font-size: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* Semester cards */
+    .sem-card {
+        background: white;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 14px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .sem-card:hover {
+        transform: translateY(-4px);
+        background: #eef1ff;
+    }
+
+    .sem-icon {
+        font-size: 34px;
+        margin-right: 20px;
+        color: #4c6ef5;
+    }
+
+    /* Subject box */
+    .subjects-box {
+        display: none;
+        background: white;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 12px;
+        animation: fadeIn 0.4s;
+    }
+
+    .subject {
+        padding: 10px;
+        margin: 6px 0;
+        background: #f6f7ff;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+    }
+
+    .subject:hover {
+        background: #e5e7ff;
+        transform: translateX(4px);
+    }
+
+    .pdf-icon {
+        font-size: 22px;
+        margin-right: 10px;
+        color: #ff5252;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<header>📚 Diploma Study Hub</header>
+
+<div class="container">
+
+    <div class="sem-card" onclick="toggleSubjects('sem1')">
+        <span class="material-icons sem-icon">school</span>
+        <h3>1st Semester</h3>
+    </div>
+    <div id="sem1" class="subjects-box"></div>
+
+    <div class="sem-card" onclick="toggleSubjects('sem3')">
+        <span class="material-icons sem-icon">menu_book</span>
+        <h3>3rd Semester</h3>
+    </div>
+    <div id="sem3" class="subjects-box"></div>
+
+    <div class="sem-card" onclick="toggleSubjects('sem4')">
+        <span class="material-icons sem-icon">collections_bookmark</span>
+        <h3>4th Semester</h3>
+    </div>
+    <div id="sem4" class="subjects-box"></div>
+
+    <div class="sem-card" onclick="toggleSubjects('sem5')">
+        <span class="material-icons sem-icon">library_books</span>
+        <h3>5th Semester</h3>
+    </div>
+    <div id="sem5" class="subjects-box"></div>
+
+</div>
+
+<script>
+// All semesters + subjects + PDF links
+const data = {
+    sem1: [
+        { name: "Mathematics - 1", pdf: "CSE_QP_24.pdf" },
+        { name: "Physics", pdf: "pdfs/physics.pdf" },
+        { name: "Basic Electronics", pdf: "pdfs/electronics.pdf" }
+    ],
+    sem3: [
+        { name: "Engineering Maths - 3", pdf: "pdfs/math3.pdf" },
+        { name: "Digital Electronics", pdf: "pdfs/digital.pdf" }
+    ],
+    sem4: [
+        { name: "Microprocessors", pdf: "pdfs/microprocessor.pdf" },
+        { name: "Computer Networks", pdf: "pdfs/network.pdf" }
+    ],
+    sem5: [
+        { name: "Operating Systems", pdf: "pdfs/os.pdf" },
+        { name: "Web Programming", pdf: "pdfs/web.pdf" }
+    ]
+};
+
+// Show / hide subject list
+function toggleSubjects(semId) {
+    const box = document.getElementById(semId);
+
+    // collapse if already open
+    if (box.style.display === "block") {
+        box.style.display = "none";
+        return;
+    }
+
+    // generate list
+    let html = "";
+    data[semId].forEach(s => {
+        html += `
+            <div class="subject" onclick="openPDF('${s.pdf}')">
+                <span class="material-icons pdf-icon">picture_as_pdf</span>
+                ${s.name}
+            </div>
+        `;
+    });
+
+    box.innerHTML = html;
+    box.style.display = "block";
+}
+
+// Open PDF
+function openPDF(link) {
+    window.open(link, "_blank");
+}
+</script>
+
+</body>
+</html>
